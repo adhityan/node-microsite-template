@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "corona-backend.name" . }}
+  name: {{ include "gc-chat.name" . }}
   namespace: {{.Release.Namespace}}
   labels:
-    {{- include "corona-backend.labels" . | nindent 4 }}
+    {{- include "gc-chat.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "corona-backend.coreSelectorLabels" . | nindent 6 }}
+      {{- include "gc-chat.coreSelectorLabels" . | nindent 6 }}
   strategy:
     type: Recreate
   template:
@@ -17,15 +17,15 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/config/configmap.yaml") . | sha256sum }}
       labels:
-        {{- include "corona-backend.coreSelectorLabels" . | nindent 8 }}
+        {{- include "gc-chat.coreSelectorLabels" . | nindent 8 }}
     spec:
       imagePullSecrets:
-        {{- include "corona-backend.pull-secrets" . | nindent 8 }}
+        {{- include "gc-chat.pull-secrets" . | nindent 8 }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ include "corona-backend.version" . }}"
+          image: "{{ .Values.image.repository }}:{{ include "gc-chat.version" . }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -46,7 +46,7 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
-            {{- include "corona-backend.default-env-config" . | nindent 12 }}
+            {{- include "gc-chat.default-env-config" . | nindent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

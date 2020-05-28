@@ -1,4 +1,4 @@
-{{- define "corona-backend.nats-env-config" -}}
+{{- define "gc-chat.nats-env-config" -}}
 - name: NATS_HOST
   {{- if .Values.nats.enabled }}
   value: {{ include "nats.fullname" . }}-client
@@ -31,11 +31,11 @@
 #   {{- end }}
 {{- end -}}
 
-{{- define "corona-backend.default-env-config" -}}
+{{- define "gc-chat.default-env-config" -}}
 - name: NODE_ENV
   valueFrom:
     configMapKeyRef:
-      name: {{ include "corona-backend.name" . }}-environment
+      name: {{ include "gc-chat.name" . }}-environment
       key: NODE_ENV
-{{ include "corona-backend.nats-env-config" . }}
+{{ include "gc-chat.nats-env-config" . }}
 {{- end -}}

@@ -36,7 +36,7 @@ const start = async () => {
                 undefinedResultCode: 404,
             },
             documentationParameters: {
-                baseUrl: 'https://corona.gamechange.dev',
+                baseUrl: 'https://chat.gamechange.dev',
             },
             enableDocumentation: true,
             middlewares: <Function[]>ObjectUtils.getObjectValues(middlewares),

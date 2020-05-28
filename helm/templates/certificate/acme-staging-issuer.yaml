@@ -2,10 +2,10 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
-  name: {{ include "corona-backend.name" . }}-issuer
+  name: {{ include "gc-chat.name" . }}-issuer
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "corona-backend.labels" . | nindent 4 }}
+    {{- include "gc-chat.labels" . | nindent 4 }}
 spec:
   acme:
     # The ACME server URL
@@ -14,7 +14,7 @@ spec:
     email: adhityan@gamechangesns.com
     # Secret resource used to store the account's private key.
     privateKeySecretRef:
-      name: {{ include "corona-backend.name" . }}-letsencrypt-staging
+      name: {{ include "gc-chat.name" . }}-letsencrypt-staging
     # Enable HTTP01 validations
     solvers:
       - selector: {}

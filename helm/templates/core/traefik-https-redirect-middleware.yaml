@@ -2,10 +2,10 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: {{ include "corona-backend.name" . }}-https-only-middleware
+  name: {{ include "gc-chat.name" . }}-https-only-middleware
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "corona-backend.labels" . | nindent 4 }}
+    {{- include "gc-chat.labels" . | nindent 4 }}
 spec:
   redirectScheme:
     scheme: https

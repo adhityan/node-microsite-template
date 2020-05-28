@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "corona-backend.name" . }}-service
+  name: {{ include "gc-chat.name" . }}-service
   namespace: {{.Release.Namespace}}
   labels:
-    {{- include "corona-backend.labels" . | nindent 4 }}
+    {{- include "gc-chat.labels" . | nindent 4 }}
 spec:
   selector:
-    {{- include "corona-backend.coreSelectorLabels" . | nindent 4 }}
+    {{- include "gc-chat.coreSelectorLabels" . | nindent 4 }}
   type: ClusterIP
   ports:
     - name: http

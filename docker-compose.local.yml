@@ -16,7 +16,7 @@ services:
         build:
             context: .
             dockerfile: dev.Dockerfile
-        container_name: corona-dev
+        container_name: chat-dev
         networks:
             - backend
         labels:
@@ -33,7 +33,7 @@ services:
         container_name: neo4j
         volumes:
             - type: bind
-              source: /Users/adhityan/Projects/Javascript/corona-backend/db
+              source: /Users/adhityan/Projects/Javascript/gc-chat/db
               target: /data
         environment:
             - NEO4J_AUTH=neo4j/local

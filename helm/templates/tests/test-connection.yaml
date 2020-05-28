@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "corona-backend.name" . }}-test-connection"
+  name: "{{ include "gc-chat.name" . }}-test-connection"
   namespace: {{.Release.Namespace}}
   labels:
-    {{- include "corona-backend.labels" . | nindent 4 }}
+    {{- include "gc-chat.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -12,5 +12,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "corona-backend.name" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "gc-chat.name" . }}:{{ .Values.service.port }}']
   restartPolicy: OnFailure

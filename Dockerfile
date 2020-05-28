@@ -1,5 +1,5 @@
-#docker build -t adhityan/corona-backend .
-#docker run -p 9000:9000 adhityan/corona-backend
+#docker build -t adhityan/gc-chat .
+#docker run -p 9000:9000 adhityan/gc-chat
 
 #STEP 1
 FROM node:12-alpine as builder

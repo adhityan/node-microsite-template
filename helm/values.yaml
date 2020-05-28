@@ -1,9 +1,9 @@
-# Default values for corona-backend.
+# Default values for gc-chat.
 replicaCount: 1
 nameOverride: ''
 
 image:
-    repository: adhityan/corona-backend
+    repository: adhityan/gc-chat
     pullPolicy: IfNotPresent
     #using gc hub pull authentication overides all other provided pull secrets
     fromGcHub: true
@@ -34,7 +34,7 @@ ingress:
     annotations:
         kubernetes.io/ingress.class: nginx
     hosts:
-        - corona.gamechange.local
+        - chat.gamechange.local
     tls: []
 
 nats:

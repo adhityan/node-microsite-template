@@ -4,46 +4,46 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: {{ include "corona-backend.name" $ }}-ingress-route-https
+  name: {{ include "gc-chat.name" $ }}-ingress-route-https
   namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "corona-backend.labels" $ | nindent 4 }}
+    {{- include "gc-chat.labels" $ | nindent 4 }}
   annotations:
     helm.sh/hook: "post-install"
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`{{ $host }}`) && PathPrefix(`/v{{ include "corona-backend.version" $ }}/`)
+    - match: Host(`{{ $host }}`) && PathPrefix(`/v{{ include "gc-chat.version" $ }}/`)
       kind: Rule
       middlewares:
-        - name: {{ include "corona-backend.name" $ }}-strip-version-prefix-middleware
+        - name: {{ include "gc-chat.name" $ }}-strip-version-prefix-middleware
       services:
-        - name: {{ include "corona-backend.name" $ }}-service
+        - name: {{ include "gc-chat.name" $ }}-service
           namespace: {{ $.Release.Namespace }}
           port: 80
   tls:
-    secretName: {{ include "corona-backend.name" $ }}-{{ $host | replace "." "-" }}-secret
+    secretName: {{ include "gc-chat.name" $ }}-{{ $host | replace "." "-" }}-secret
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: {{ include "corona-backend.name" $ }}-ingress-route-http
+  name: {{ include "gc-chat.name" $ }}-ingress-route-http
   namespace: {{ $.Release.Namespace }}
   labels:
-    {{- include "corona-backend.labels" $ | nindent 4 }}
+    {{- include "gc-chat.labels" $ | nindent 4 }}
   annotations:
     helm.sh/hook: "post-install"
 spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`{{ $host }}`) && PathPrefix(`/v{{ include "corona-backend.version" $ }}/`)
+    - match: Host(`{{ $host }}`) && PathPrefix(`/v{{ include "gc-chat.version" $ }}/`)
       kind: Rule
       middlewares:
-        - name: {{ include "corona-backend.name" $ }}-https-only-middleware
+        - name: {{ include "gc-chat.name" $ }}-https-only-middleware
       services:
-        - name: {{ include "corona-backend.name" $ }}-service
+        - name: {{ include "gc-chat.name" $ }}-service
           namespace: {{ $.Release.Namespace }}
           port: 80
 {{- end }}
