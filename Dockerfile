@@ -2,7 +2,7 @@
 #docker run -p 9000:9000 adhityan/gc-chat
 
 #STEP 1
-FROM node:12-alpine as builder
+FROM node:14-alpine as builder
 WORKDIR /code
 
 #copy npm login credentials

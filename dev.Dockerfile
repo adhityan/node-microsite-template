@@ -1,7 +1,7 @@
 #docker build -t adhityan/gc-chat-dev -f dev.Dockerfile .
 #docker run -v "$(pwd)":/app:ro -p 9000:9000 adhityan/gc-chat-dev
 
-FROM node:12-alpine
+FROM node:14-alpine
 LABEL maintainer="adhityan"
 LABEL trademark="Gamechange Solutions"
 WORKDIR /app
