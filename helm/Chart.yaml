@@ -1,0 +1,33 @@
+#kubectl create namespace corona
+#kubectl config set-context --current --namespace=corona
+#helm install --debug corona-backend ./helm --namespace=corona
+#helm uninstall corona-backend
+
+#kubectl create namespace corona-1-0-0
+#kubectl config set-context --current --namespace=corona-1-0-0
+#helm install --dry-run corona-backend ./helm --namespace=corona-1-0-0 --set ingress.hosts\[0\]=corona.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local
+#helm install corona-backend ./helm --namespace=corona-1-0-0 --set ingress.hosts\[0\]=corona.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1
+
+#helm upgrade --dry-run corona-backend ./helm --namespace=corona --set ingress.hosts\[0\]=corona.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,image.versionOverride=1.0.9
+#helm install corona-backend ./helm --namespace=corona --set ingress.hosts\[0\]=corona.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1
+#helm install corona-backend ./helm --namespace=corona --set ingress.hosts\[0\]=corona.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1,image.versionOverride={{}},image.gcCredentials.username={{}},image.gcCredentials.password={{}}
+
+apiVersion: v2
+name: corona-backend
+description: A helm chart for corona kubernetes deployment
+type: application
+
+sources:
+  - https://github.com/gcsns/corona-backend
+maintainers:
+  - name: K V Adhityan
+    email: adhityan@gamechangesns.com
+
+dependencies:
+  # - name: nats
+  #   version: 4.x.x
+  #   repository: https://kubernetes-charts.storage.googleapis.com/
+  #   condition: nats.enabled
+
+version: 1.0.1
+appVersion: 1.0.0

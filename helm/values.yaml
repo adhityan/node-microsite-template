@@ -1,0 +1,80 @@
+# Default values for corona-backend.
+replicaCount: 1
+nameOverride: ''
+
+image:
+    repository: adhityan/corona-backend
+    pullPolicy: IfNotPresent
+    #using gc hub pull authentication overides all other provided pull secrets
+    fromGcHub: true
+    #These are only used if auth.docker.json is not found. For e.g. - in CI environment
+    gcCredentials:
+        username: ''
+        password: ''
+    pullSecrets: []
+    versionOverride: ''
+
+podSecurityContext: {}
+    # fsGroup: 2000
+
+securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+service:
+    type: ClusterIP
+    port: 80
+
+ingress:
+    enabled: false
+    annotations:
+        kubernetes.io/ingress.class: nginx
+    hosts:
+        - corona.gamechange.local
+    tls: []
+
+nats:
+    enabled: false
+    auth:
+        enabled: false
+        user: 'gc-nats-user'
+        password: 'gc-nats-pwd'
+    clusterAuth:
+        enabled: false
+        password: 'gc-cluster-pwd'
+    metrics:
+        enabled: false
+
+externalNats:
+    host: 'localhost'
+    # clusterName: 'gc-bnk-service'
+    username: 'gc-nats-user'
+    password: 'gc-nats-pwd'
+    port: 4222
+
+traefik:
+    crds: true
+
+certificates:
+    enabled: true
+    issuer: 'external' #options - self, staging, production, external
+    externalIssuerName: 'cluster-letsencrypt-production'
+    externalIssuerKind: 'ClusterIssuer'
+
+resources: {}
+    # limits:
+    #     cpu: 100m
+    #     memory: 128Mi
+    # requests:
+    #     cpu: 50m
+    #     memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

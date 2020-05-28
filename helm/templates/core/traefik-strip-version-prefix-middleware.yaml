@@ -1,0 +1,13 @@
+{{- if .Values.traefik.crds -}}
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "corona-backend.name" . }}-strip-version-prefix-middleware
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "corona-backend.labels" . | nindent 4 }}
+spec:
+  stripPrefix:
+    prefixes:
+      - /v{{ include "corona-backend.version" . }}
+{{- end }}

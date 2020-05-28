@@ -1,0 +1,57 @@
+{
+  "name": "node-microsite-template",
+  "version": "1.1.0",
+  "description": "simple template for mincrosites on TS and Node",
+  "main": "dist/app.js",
+  "license": "ISC",
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "ncc build src/app.ts",
+    "start:dev": "ts-node-dev --respawn --transpileOnly src/app.ts",
+    "tc": "tsc --noEmit",
+    "lint": "eslint 'src/**'",
+    "lint:fix": "eslint --fix 'src/**'",
+    "pretty": "prettier --write '**'",
+    "pre-commit": "lint-staged"
+  },
+  "keywords": [],
+  "author": "K V Adhityan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adhityan/node-microsite-template"
+  },
+  "dependencies": {
+    "@adhityan/gc-doc": "^0.2.5",
+    "@adhityan/gc-logger": "^0.1.9",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "neo4j-driver": "^4.0.2",
+    "typedi": "^0.8.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/body-parser": "^1.19.0",
+    "@types/express": "^4.17.3",
+    "@types/node": "^12.12.6",
+    "@typescript-eslint/eslint-plugin": "^2.24.0",
+    "@typescript-eslint/parser": "^2.24.0",
+    "@zeit/ncc": "^0.22.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-typescript": "^7.2.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-sort-class-members": "^1.6.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.0",
+    "eslint-plugin-unused-imports": "^0.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
+    "prettier": "^2.0.1",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.8.3"
+  }
+}

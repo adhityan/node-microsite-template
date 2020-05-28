@@ -1,0 +1,65 @@
+#docker-compose -f docker-compose.local.yml up
+#docker-compose -f docker-compose.local.yml build
+#docker-compose -f docker-compose.local.yml down -v --remove-orphans
+version: '3.7'
+
+services:
+    server:
+        volumes:
+            - type: bind
+              source: .
+              target: /app
+        env_file:
+            - 'src/.env'
+        depends_on:
+            - neo4j
+        build:
+            context: .
+            dockerfile: dev.Dockerfile
+        container_name: corona-dev
+        networks:
+            - backend
+        labels:
+            - 'traefik.enable=true'
+            - 'traefik.http.routers.api.priority=3'
+            - 'traefik.http.routers.api.rule=Host(`localhost`) && PathPrefix(`/api`)'
+            - 'traefik.http.routers.api.entrypoints=web'
+        restart: always
+        ports:
+            - 9000:9000
+
+    neo4j:
+        image: neo4j:latest
+        container_name: neo4j
+        volumes:
+            - type: bind
+              source: /Users/adhityan/Projects/Javascript/corona-backend/db
+              target: /data
+        environment:
+            - NEO4J_AUTH=neo4j/local
+        networks:
+            - backend
+        ports:
+            - 7474:7474
+            - 7687:7687
+
+    traefik:
+        image: traefik:latest
+        container_name: traefik
+        command:
+            - '--accesslog=true'
+            - '--api.insecure=true'
+            - '--providers.docker=true'
+            - '--entrypoints.web.address=:80'
+            - '--providers.docker.exposedbydefault=false'
+        restart: always
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - backend
+        ports:
+            - 80:80
+            - 9090:8080
+
+networks:
+    backend:

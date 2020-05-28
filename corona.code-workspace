@@ -1,0 +1,37 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+            "**/.cache": true,
+            "**/db": true,
+			"**/dist": true,
+			"yarn.lock": true,
+			"package-lock.json": true,
+			"**/data": true
+		},
+		"search.exclude": {
+			"dist": true,
+            "**/db": true,
+			"**/coverage": true,
+            "**/.cache": true,
+		},
+		"typescript.tsdk": "node_modules/typescript/lib",
+		"files.autoSave": "onFocusChange",
+		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+	},
+	"extensions": {
+		"recommendations": [
+			"wayou.vscode-todo-highlight",
+		],
+		"unwantedRecommendations": [
+		]
+	},
+	"launch": {
+		"configurations": [],
+		"compounds": []
+	}
+}
