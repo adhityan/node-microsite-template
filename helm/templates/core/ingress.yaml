@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-{{- $name := include "gc-chat.name" . }}
+{{- $name := include "ATEMPLATE.name" . }}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
@@ -14,7 +14,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
   labels:
-    {{- include "gc-chat.labels" . | nindent 4 }}
+    {{- include "ATEMPLATE.labels" . | nindent 4 }}
 spec:
 {{- if .Values.ingress.tls }}
   tls:

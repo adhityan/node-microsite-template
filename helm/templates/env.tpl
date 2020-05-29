@@ -1,4 +1,4 @@
-{{- define "gc-chat.nats-env-config" -}}
+{{- define "ATEMPLATE.nats-env-config" -}}
 - name: NATS_HOST
   {{- if .Values.nats.enabled }}
   value: {{ include "nats.fullname" . }}-client
@@ -31,11 +31,11 @@
 #   {{- end }}
 {{- end -}}
 
-{{- define "gc-chat.default-env-config" -}}
+{{- define "ATEMPLATE.default-env-config" -}}
 - name: NODE_ENV
   valueFrom:
     configMapKeyRef:
-      name: {{ include "gc-chat.name" . }}-environment
+      name: {{ include "ATEMPLATE.name" . }}-environment
       key: NODE_ENV
-{{ include "gc-chat.nats-env-config" . }}
+{{ include "ATEMPLATE.nats-env-config" . }}
 {{- end -}}

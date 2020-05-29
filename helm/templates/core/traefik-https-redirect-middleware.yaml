@@ -2,10 +2,10 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: {{ include "gc-chat.name" . }}-https-only-middleware
+  name: {{ include "ATEMPLATE.name" . }}-https-only-middleware
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "gc-chat.labels" . | nindent 4 }}
+    {{- include "ATEMPLATE.labels" . | nindent 4 }}
 spec:
   redirectScheme:
     scheme: https

@@ -36,7 +36,7 @@ const start = async () => {
                 undefinedResultCode: 404,
             },
             documentationParameters: {
-                baseUrl: 'https://chat.gamechange.dev',
+                baseUrl: 'https://ATEMPLATE.gamechange.dev',
             },
             enableDocumentation: true,
             middlewares: <Function[]>ObjectUtils.getObjectValues(middlewares),

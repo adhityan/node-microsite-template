@@ -16,7 +16,7 @@ services:
         build:
             context: .
             dockerfile: dev.Dockerfile
-        container_name: chat-dev
+        container_name: ATEMPLATE-dev
         networks:
             - backend
         labels:
@@ -33,7 +33,7 @@ services:
         container_name: mariadb
         volumes:
             - type: bind
-              source: /Users/adhityan/Projects/Javascript/gc-chat/db
+              source: /Users/adhityan/Projects/Javascript/ATEMPLATE/db
               target: /data
         environment:
             - NEO4J_AUTH=neo4j/local

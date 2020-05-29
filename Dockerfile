@@ -1,5 +1,5 @@
-#docker build -t adhityan/gc-chat .
-#docker run -p 9000:9000 adhityan/gc-chat
+#docker build -t adhityan/ATEMPLATE .
+#docker run -p 9000:9000 adhityan/ATEMPLATE
 
 #STEP 1
 FROM node:14-alpine as builder

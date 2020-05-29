@@ -1,14 +1,14 @@
-# Default values for gc-chat.
+# Default values for ATEMPLATE.
 replicaCount: 1
 nameOverride: ''
 
 image:
-    repository: adhityan/gc-chat
+    repository: adhityan/ATEMPLATE
     pullPolicy: IfNotPresent
-    #using gc hub pull authentication overides all other provided pull secrets
-    fromGcHub: true
+    #using private docker hub pull authentication overides all other provided pull secrets
+    fromPrivateDockerHub: true
     #These are only used if auth.docker.json is not found. For e.g. - in CI environment
-    gcCredentials:
+    dockerCredentials:
         username: ''
         password: ''
     pullSecrets: []
@@ -34,26 +34,26 @@ ingress:
     annotations:
         kubernetes.io/ingress.class: nginx
     hosts:
-        - chat.gamechange.local
+        - ATEMPLATE.gamechange.local
     tls: []
 
 nats:
     enabled: false
     auth:
         enabled: false
-        user: 'gc-nats-user'
-        password: 'gc-nats-pwd'
+        user: 'adhi-nats-user'
+        password: 'adhi-nats-pwd'
     clusterAuth:
         enabled: false
-        password: 'gc-cluster-pwd'
+        password: 'adhi-cluster-pwd'
     metrics:
         enabled: false
 
 externalNats:
     host: 'localhost'
-    # clusterName: 'gc-bnk-service'
-    username: 'gc-nats-user'
-    password: 'gc-nats-pwd'
+    # clusterName: 'adhi-service'
+    username: 'adhi-nats-user'
+    password: 'adhi-nats-pwd'
     port: 4222
 
 traefik:

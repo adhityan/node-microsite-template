@@ -2,10 +2,10 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
-  name: {{ include "gc-chat.name" . }}-issuer
+  name: {{ include "ATEMPLATE.name" . }}-issuer
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "gc-chat.labels" . | nindent 4 }}
+    {{- include "ATEMPLATE.labels" . | nindent 4 }}
 spec:
   selfSigned: {}
 {{- end }}

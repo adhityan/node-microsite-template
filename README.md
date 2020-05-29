@@ -1,3 +1,3 @@
-# GC Chat
+# NODE ATEMPLATE
 
-The saleskey bound chat engine
+The saleskey bound ATEMPLATE engine

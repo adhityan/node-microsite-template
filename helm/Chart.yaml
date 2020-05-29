@@ -1,24 +1,24 @@
-#kubectl create namespace gc-chat
-#kubectl config set-context --current --namespace=gc-chat
-#helm install --debug gc-chat ./helm --namespace=gc-chat
-#helm uninstall gc-chat
+#kubectl create namespace ATEMPLATE
+#kubectl config set-context --current --namespace=ATEMPLATE
+#helm install --debug ATEMPLATE ./helm --namespace=ATEMPLATE
+#helm uninstall ATEMPLATE
 
-#kubectl create namespace gc-chat-1-0-0
-#kubectl config set-context --current --namespace=gc-chat-1-0-0
-#helm install --dry-run gc-chat ./helm --namespace=gc-chat-1-0-0 --set ingress.hosts\[0\]=gc-chat.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local
-#helm install gc-chat ./helm --namespace=gc-chat-1-0-0 --set ingress.hosts\[0\]=gc-chat.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1
+#kubectl create namespace ATEMPLATE-1-0-0
+#kubectl config set-context --current --namespace=ATEMPLATE-1-0-0
+#helm install --dry-run ATEMPLATE ./helm --namespace=ATEMPLATE-1-0-0 --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local
+#helm install ATEMPLATE ./helm --namespace=ATEMPLATE-1-0-0 --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1
 
-#helm upgrade --dry-run gc-chat ./helm --namespace=gc-chat --set ingress.hosts\[0\]=gc-chat.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,image.versionOverride=1.0.9
-#helm install gc-chat ./helm --namespace=gc-chat --set ingress.hosts\[0\]=gc-chat.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1
-#helm install gc-chat ./helm --namespace=gc-chat --set ingress.hosts\[0\]=gc-chat.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1,image.versionOverride={{}},image.gcCredentials.username={{}},image.gcCredentials.password={{}}
+#helm upgrade --dry-run ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,image.versionOverride=1.0.9
+#helm install ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1
+#helm install ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1,image.versionOverride={{}},image.dockerCredentials.username={{}},image.dockerCredentials.password={{}}
 
 apiVersion: v2
-name: gc-chat
-description: A helm chart for gc-chat kubernetes deployment
+name: ATEMPLATE
+description: A helm chart for ATEMPLATE kubernetes deployment
 type: application
 
 sources:
-  - https://github.com/gcsns/gc-chat
+  - https://github.com/adhityan/node-microsite-template
 maintainers:
   - name: K V Adhityan
     email: adhityan@gamechangesns.com

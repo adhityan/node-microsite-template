@@ -3,4 +3,4 @@ import 'reflect-metadata';
 import { Service } from 'typedi';
 
 @Service()
-export class ChatService {}
+export class ATEMPLATEService {}

@@ -1,7 +1,7 @@
 {
-  "name": "gc-chat",
+  "name": "node-microsite-template",
   "version": "1.0.0",
-  "description": "The saleskey bound chat engine",
+  "description": "A default template for node microservices",
   "main": "dist/app.js",
   "license": "ISC",
   "scripts": {
@@ -18,7 +18,7 @@
   "author": "K V Adhityan",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gcsns/gc-chat"
+    "url": "git+https://github.com/adhityan/node-microsite-template"
   },
   "dependencies": {
     "@adhityan/gc-doc": "^0.2.5",

@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "gc-chat.name" . }}-test-connection"
+  name: "{{ include "ATEMPLATE.name" . }}-test-connection"
   namespace: {{.Release.Namespace}}
   labels:
-    {{- include "gc-chat.labels" . | nindent 4 }}
+    {{- include "ATEMPLATE.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -12,5 +12,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "gc-chat.name" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "ATEMPLATE.name" . }}:{{ .Values.service.port }}']
   restartPolicy: OnFailure

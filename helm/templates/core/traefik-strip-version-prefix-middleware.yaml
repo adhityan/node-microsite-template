@@ -2,12 +2,12 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
-  name: {{ include "gc-chat.name" . }}-strip-version-prefix-middleware
+  name: {{ include "ATEMPLATE.name" . }}-strip-version-prefix-middleware
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "gc-chat.labels" . | nindent 4 }}
+    {{- include "ATEMPLATE.labels" . | nindent 4 }}
 spec:
   stripPrefix:
     prefixes:
-      - /v{{ include "gc-chat.version" . }}
+      - /v{{ include "ATEMPLATE.version" . }}
 {{- end }}
