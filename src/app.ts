@@ -7,6 +7,7 @@ import * as controllers from './controllers';
 import * as middlewares from './middlewares';
 import { ObjectUtils } from './utils';
 import { Config } from './config';
+import { helmet } from 'helmet';
 
 Logger.init(Config.LOGGER_CONFIG);
 process.on('unhandledRejection', (reason, p) => {
@@ -17,6 +18,7 @@ const app: Express.Application = Express();
 const start = async () => {
     app.use(Tracer.expressMiddleware());
     app.use(bodyparser.json());
+    app.use(helmet());
 
     Router.initialize(
         app,
@@ -36,7 +38,7 @@ const start = async () => {
                 undefinedResultCode: 404,
             },
             documentationParameters: {
-                baseUrl: 'https://ATEMPLATE.gamechange.dev',
+                baseUrl: 'https://ATEMPLATE.adhithan.com',
             },
             enableDocumentation: true,
             middlewares: <Function[]>ObjectUtils.getObjectValues(middlewares),
