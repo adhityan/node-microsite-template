@@ -191,9 +191,12 @@ tags
 #tsconfig.json
 #jsconfig.json
 
+#build folders
 build/
 dist/
 
+#databases
+local.db
 data/
 mysql/
 postgres/
