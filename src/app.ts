@@ -32,7 +32,7 @@ const initDatabase = async () => {
         database: path.resolve(__dirname, '../local.db'),
         entities,
         logger: new OrmLogger(),
-        logging: isDebug(),
+        logging: isDebug() ? 'all' : ['error'],
         maxQueryExecutionTime: 1000,
 
         migrations,
