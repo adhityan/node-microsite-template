@@ -16,11 +16,12 @@
     routing-controllers-openapi "^1.8.0"
     swagger-ui-dist "^3.25.0"
 
-"@adhityan/gc-logger@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@adhityan/gc-logger/-/gc-logger-1.0.0.tgz#bff31a432f683fb7f12384ab3b634e3975f12042"
-  integrity sha512-QtiA4WYWWyAT1SeV7nQCi8xomuK9dPL2R8rn+flGbNCR6fMFvM6o8PIhkoWjxPGWIoGrOmsY6e8lbaSPKzctzw==
+"@adhityan/gc-logger@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@adhityan/gc-logger/-/gc-logger-1.3.1.tgz#69715522f6abc1b413b4199e90dec5ed7e167ca5"
+  integrity sha512-pHBxwR4F2EXZaHboGAy5nl/yYAuUmizMpSj0Ti+b343iK1PCCav+vND8caCLsrHWDJFdubVGmJZfYnVQTV7HIw==
   dependencies:
+    chalk "^4.0.0"
     uuid "^8.1.0"
     winston "^3.2.1"
 
@@ -704,6 +705,14 @@ chalk@^3.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+chalk@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.0.0.tgz#6e98081ed2d17faab615eb52ac66ec1fe6209e72"
+  integrity sha512-N9oWFcegS0sFr9oh1oz2d7Npos6vNoWW9HvtCg5N1KRFpUhaAhvTv5Y58g880fZaEYSNm3qDz8SU1UrGvp+n7A==
+  dependencies:
+    ansi-styles "^4.1.0"
+    supports-color "^7.1.0"
+
 chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
@@ -1360,6 +1369,11 @@ eslint-plugin-jest@^23.8.2:
   integrity sha512-xwbnvOsotSV27MtAe7s8uGWOori0nUsrXh2f1EnpmXua8sDfY6VZhHAhHg2sqK7HBNycRQExF074XSZ7DvfoFg==
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.5.0"
+
+eslint-plugin-promise@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-4.2.1.tgz#845fd8b2260ad8f82564c1222fce44ad71d9418a"
+  integrity sha512-VoM09vT7bfA7D+upt+FjeBO5eHIJQBUWki1aPvB+vbNiHS3+oGIJGIeyBtKQTME6UPXXy3vV07OL1tHd3ANuDw==
 
 eslint-plugin-sort-class-members@^1.6.0:
   version "1.6.0"

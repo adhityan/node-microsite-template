@@ -6,6 +6,7 @@ import { createConnection, useContainer } from 'typeorm';
 import { Router } from '@adhityan/gc-doc';
 import Helmet from 'helmet';
 import path from 'path';
+import cors from 'cors';
 
 import * as controllers from './controllers';
 import * as middlewares from './middlewares';
@@ -14,9 +15,7 @@ import { Config } from './config';
 import { Entities, Migrations } from './orm';
 
 Logger.init(Config.LOGGER_CONFIG);
-process.on('unhandledRejection', (reason, p) => {
-    Logger.error('Unhandled Rejection for promise', p, 'reason:', reason);
-});
+process.on('unhandledRejection', Logger.unhandledPromiseHandler);
 
 const isDebug = () => {
     if (process.env.ENV?.includes('PROD') || process.env.ENV?.includes('prod')) return false;
@@ -26,6 +25,7 @@ const isDebug = () => {
 const initDatabase = async () => {
     const entities = <Function[]>ObjectUtils.getObjectValues(Entities);
     const migrations = <Function[]>ObjectUtils.getObjectValues(Migrations);
+    console.log('entities', entities);
 
     Logger.info('Established database connection');
     await createConnection({
@@ -34,8 +34,9 @@ const initDatabase = async () => {
         logger: new OrmLogger(),
         logging: isDebug() ? 'all' : ['error'],
         maxQueryExecutionTime: 1000,
-
         migrations,
+        synchronize: isDebug(),
+
         type: 'sqlite',
     });
 };
@@ -45,6 +46,7 @@ const start = async () => {
     app.use(Tracer.expressMiddleware());
     app.use(bodyparser.json());
     app.use(Helmet());
+    app.use(cors());
 
     useContainer(Container);
     await initDatabase();
