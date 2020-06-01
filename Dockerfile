@@ -12,6 +12,9 @@ COPY .npmrc /code
 COPY package.json /code/
 COPY yarn.lock /code/
 
+## If bcrypt is needed
+#RUN apk --no-cache add --virtual builds-deps build-base python
+
 #install packages
 RUN yarn install --frozen-lockfile
 
@@ -22,11 +25,11 @@ RUN yarn build
 #STEP FINAL
 FROM node:12-alpine
 LABEL maintainer="adhityan"
-LABEL trademark="Gamechange Solutions"
 
 WORKDIR /app
 COPY --from=builder /code/package.json /app
 COPY --from=builder /code/dist /app
 
+USER node    
 CMD [ "node", "index.js" ]
 EXPOSE 9000
