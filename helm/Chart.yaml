@@ -1,33 +1,25 @@
 #kubectl create namespace ATEMPLATE
 #kubectl config set-context --current --namespace=ATEMPLATE
 #helm install --debug ATEMPLATE ./helm --namespace=ATEMPLATE
+
+#helm install ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev
+#helm install --dry-run ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev
+#helm upgrade --dry-run ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev
 #helm uninstall ATEMPLATE
 
-#kubectl create namespace ATEMPLATE-1-0-0
-#kubectl config set-context --current --namespace=ATEMPLATE-1-0-0
-#helm install --dry-run ATEMPLATE ./helm --namespace=ATEMPLATE-1-0-0 --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local
-#helm install ATEMPLATE ./helm --namespace=ATEMPLATE-1-0-0 --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1
-
-#helm upgrade --dry-run ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,image.versionOverride=1.0.9
-#helm install ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1
-#helm install ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev,externalNats.host=nats-client.nats.svc.cluster.local,replicaCount=1,image.versionOverride={{}},image.dockerCredentials.username={{}},image.dockerCredentials.password={{}}
-
-apiVersion: v2
+apiVersion: v1
 name: ATEMPLATE
 description: A helm chart for ATEMPLATE kubernetes deployment
 type: application
 
+dependencies:
+
 sources:
   - https://github.com/adhityan/node-microsite-template
+
 maintainers:
   - name: K V Adhityan
     email: adhityan@gamechangesns.com
 
-dependencies:
-  # - name: nats
-  #   version: 4.x.x
-  #   repository: https://kubernetes-charts.storage.googleapis.com/
-  #   condition: nats.enabled
-
-version: 1.0.1
+version: 1.0.0
 appVersion: 1.0.0

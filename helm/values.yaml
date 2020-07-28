@@ -5,14 +5,30 @@ nameOverride: ''
 image:
     repository: adhityan/ATEMPLATE
     pullPolicy: IfNotPresent
-    #using private docker hub pull authentication overides all other provided pull secrets
-    fromPrivateDockerHub: true
+    #using gc hub pull authentication overides all other provided pull secrets
+    fromGcHub: true
     #These are only used if auth.docker.json is not found. For e.g. - in CI environment
-    dockerCredentials:
+    hubCredentials:
         username: ''
         password: ''
     pullSecrets: []
     versionOverride: ''
+
+service:
+    type: ClusterIP
+    port: 80
+
+ingress:
+    enabled: true
+    tls: true
+    hosts:
+        - ATEMPLATE.gamechange.local
+
+certificates:
+    enabled: true
+    issuer: 'external' #options - self, staging, production, external
+    externalIssuerName: 'cluster-letsencrypt-production'
+    externalIssuerKind: 'ClusterIssuer'
 
 podSecurityContext: {}
     # fsGroup: 2000
@@ -24,46 +40,6 @@ securityContext: {}
     # readOnlyRootFilesystem: true
     # runAsNonRoot: true
     # runAsUser: 1000
-
-service:
-    type: ClusterIP
-    port: 80
-
-ingress:
-    enabled: false
-    annotations:
-        kubernetes.io/ingress.class: nginx
-    hosts:
-        - ATEMPLATE.gamechange.local
-    tls: []
-
-nats:
-    enabled: false
-    auth:
-        enabled: false
-        user: 'adhi-nats-user'
-        password: 'adhi-nats-pwd'
-    clusterAuth:
-        enabled: false
-        password: 'adhi-cluster-pwd'
-    metrics:
-        enabled: false
-
-externalNats:
-    host: 'localhost'
-    # clusterName: 'adhi-service'
-    username: 'adhi-nats-user'
-    password: 'adhi-nats-pwd'
-    port: 4222
-
-traefik:
-    crds: true
-
-certificates:
-    enabled: true
-    issuer: 'external' #options - self, staging, production, external
-    externalIssuerName: 'cluster-letsencrypt-production'
-    externalIssuerKind: 'ClusterIssuer'
 
 resources: {}
     # limits:

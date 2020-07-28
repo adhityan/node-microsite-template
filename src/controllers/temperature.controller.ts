@@ -1,12 +1,13 @@
-import { JsonController, Get, Res } from 'routing-controllers';
-import { ResponseType, ResponseContentType } from '../types';
-import { ResponseUtil } from '../utils';
+import { ResponseSchema } from 'routing-controllers-openapi';
+import { JsonController, Post, Body } from 'routing-controllers';
+import { GenericResponse, TemperatureRequest } from '../models';
 
-@JsonController('/temperature')
-export class TemperatureController {
-    @Get('/recordit')
+@JsonController('/example')
+export class ExampleController {
+    @Post('/temperature')
+    @ResponseSchema(GenericResponse)
     // eslint-disable-next-line class-methods-use-this
-    public async live(@Res() res: ResponseContentType): Promise<ResponseType> {
-        return ResponseUtil.ok({ message: 'working' }, res);
+    public async temperateureFromFrToCe(@Body() body: TemperatureRequest): Promise<GenericResponse> {
+        return new GenericResponse(`Celcius value is ${(body.fahrenheit - 32) * 0.5556}`);
     }
 }

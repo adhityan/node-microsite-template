@@ -1,5 +1,10 @@
 {{/* vim: set filetype=mustache: */}}
 
+{{- define "helm-toolkit.utils.joinListWithComma" -}}
+{{- $local := dict "first" true -}}
+{{- range $k, $v := . -}}{{- if not $local.first -}},{{- end -}}{{- $v -}}{{- $_ := set $local "first" false -}}{{- end -}}
+{{- end -}}
+
 {{/* Expand the name of the chart. */}}
 {{- define "ATEMPLATE.name" -}}
 {{- default .Chart.Name .Values.nameOverride | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
@@ -13,10 +18,6 @@
 {{/* Create chart name and version as used by the chart label. */}}
 {{- define "ATEMPLATE.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-
-{{- define "nats.fullname" -}}
-{{- printf "%s-%s" .Release.Name "nats" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{- define "ATEMPLATE.certificateIssuer" -}}
@@ -43,7 +44,7 @@ app.kubernetes.io/component: "corana-core"
 {{/* Docker config json */}}
 {{- define "ATEMPLATE.docker-config" -}}
 {{ if .Files.Glob "auth.docker.json" }}{{ .Files.Get "auth.docker.json" | b64enc }}
-{{- else }}{{- printf "{ \"auths\": { \"https://index.docker.io/v1/\": { \"auth\": \"%s\" } } }" (printf "%s:%s" .Values.image.dockerCredentials.username .Values.image.dockerCredentials.password | b64enc) | b64enc }}{{- end }}
+{{- else }}{{- printf "{ \"auths\": { \"https://index.docker.io/v1/\": { \"auth\": \"%s\" } } }" (printf "%s:%s" .Values.image.hubCredentials.username .Values.image.hubCredentials.password | b64enc) | b64enc }}{{- end }}
 {{- end -}}
 
 {{/* Pull secrets */}}
@@ -51,7 +52,7 @@ app.kubernetes.io/component: "corana-core"
 {{ if .Values.image.pullSecrets }}
 {{- .Values.image.pullSecrets }}
 {{- end -}}
-{{ if .Values.image.fromPrivateDockerHub }}
+{{ if .Values.image.fromGcHub }}
 - name: {{ include "ATEMPLATE.name" . }}-docker-config
 {{- end -}}
 {{- end -}}

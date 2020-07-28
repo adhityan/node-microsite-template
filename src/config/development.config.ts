@@ -1,9 +1,5 @@
 import { BaseConfig } from './base.config';
 
-class Development extends BaseConfig {
-    FIREBASE_URL = 'https://DOMAIN.firebaseio.com';
-
-    SEND_OTP = false;
-}
+class Development extends BaseConfig {}
 
 export const development = new Development();

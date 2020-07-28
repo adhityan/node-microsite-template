@@ -1,5 +1,5 @@
-#docker build -t adhityan/ATEMPLATE-dev -f dev.Dockerfile .
-#docker run -v "$(pwd)":/app:ro -p 9000:9000 adhityan/ATEMPLATE-dev
+#docker build -t adhityan/atemplate-dev -f dev.Dockerfile .
+#Run via compose
 
 FROM node:14-alpine
 LABEL maintainer="adhityan"
@@ -7,7 +7,7 @@ LABEL trademark="Gamechange Solutions"
 WORKDIR /app
 
 #copy npm login credentials
-COPY .npmrc /app
+# COPY .npmrc /app
 
 ## If bcrypt is needed
 #RUN apk --no-cache add --virtual builds-deps build-base python

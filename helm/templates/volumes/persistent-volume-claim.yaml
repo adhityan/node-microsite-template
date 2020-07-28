@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "ATEMPLATE.name" . }}-data-cache
+  namespace: {{.Release.Namespace}}
+  labels:
+    {{- include "ATEMPLATE.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: efs-sc

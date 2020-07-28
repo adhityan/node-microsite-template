@@ -1,0 +1,20 @@
+{{- if .Release.IsInstall -}}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "ATEMPLATE.name" . }}-data-cache-volume
+  namespace: {{.Release.Namespace}}
+  labels:
+    {{- include "ATEMPLATE.labels" . | nindent 4 }}
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: efs-sc
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-b1a59cf0
+{{- end }}

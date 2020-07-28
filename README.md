@@ -1,3 +1,3 @@
-# NODE ATEMPLATE
+# ATEMPLATE
 
-The saleskey bound ATEMPLATE engine
+ATEMPLATE is a template for node-typescript based applications with support for kubernetes

@@ -47,6 +47,13 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
             {{- include "ATEMPLATE.default-env-config" . | nindent 12 }}
+          volumeMounts:
+            - mountPath: /cache
+              name: {{ include "ATEMPLATE.name" . }}-data-cache-volume
+      volumes:
+        - name: {{ include "ATEMPLATE.name" . }}-data-cache-volume
+          persistentVolumeClaim:
+            claimName: {{ include "ATEMPLATE.name" . }}-data-cache
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

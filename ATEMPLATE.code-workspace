@@ -7,7 +7,6 @@
 	"settings": {
 		"files.exclude": {
             "**/.cache": true,
-            "**/db": true,
 			"**/dist": true,
 			"yarn.lock": true,
 			"package-lock.json": true,
@@ -17,15 +16,16 @@
 			"dist": true,
             "**/db": true,
 			"**/coverage": true,
-            "**/.cache": true,
+			"**/.cache": true,
+			"yarn.lock": true
 		},
 		"typescript.tsdk": "node_modules/typescript/lib",
 		"files.autoSave": "onFocusChange",
 		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+		"deno.enable": false,
 	},
 	"extensions": {
 		"recommendations": [
-			"wayou.vscode-todo-highlight",
 		],
 		"unwantedRecommendations": [
 		]
