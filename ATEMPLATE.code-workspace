@@ -19,8 +19,8 @@
 			"**/.cache": true,
 			"yarn.lock": true
 		},
-		"typescript.tsdk": "node_modules/typescript/lib",
 		"files.autoSave": "onFocusChange",
+		"typescript.tsdk": "node_modules/typescript/lib",
 		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
 		"deno.enable": false,
 	},

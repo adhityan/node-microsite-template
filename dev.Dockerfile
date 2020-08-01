@@ -20,10 +20,8 @@ COPY yarn.lock /app/
 #install packages
 RUN yarn install --frozen-lockfile
 
-COPY . /app/
-
 #always protect yourself
-USER 1000    
+USER 1000
 
 #code should be mounted before this
 CMD [ "yarn", "start:dev" ]

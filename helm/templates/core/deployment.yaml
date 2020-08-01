@@ -48,12 +48,12 @@ spec:
           env:
             {{- include "atemplate.default-env-config" . | nindent 12 }}
           volumeMounts:
-            - mountPath: /cache
-              name: {{ include "atemplate.name" . }}-data-cache-volume
+            - mountPath: /db
+              name: {{ include "atemplate.name" . }}-data-volume
       volumes:
-        - name: {{ include "atemplate.name" . }}-data-cache-volume
+        - name: {{ include "atemplate.name" . }}-data-volume
           persistentVolumeClaim:
-            claimName: {{ include "atemplate.name" . }}-data-cache
+            claimName: {{ include "atemplate.name" . }}-db-claim
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "atemplate.name" . }}-data-cache
+  name: {{ include "atemplate.name" . }}-db-claim
   namespace: {{.Release.Namespace}}
   labels:
     {{- include "atemplate.labels" . | nindent 4 }}
