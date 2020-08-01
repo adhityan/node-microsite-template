@@ -1,9 +1,9 @@
-# Default values for ATEMPLATE.
+# Default values for atemplate.
 replicaCount: 1
 nameOverride: ''
 
 image:
-    repository: adhityan/ATEMPLATE
+    repository: adhityan/atemplate
     pullPolicy: IfNotPresent
     #using gc hub pull authentication overides all other provided pull secrets
     fromGcHub: true
@@ -22,7 +22,7 @@ ingress:
     enabled: true
     tls: true
     hosts:
-        - ATEMPLATE.gamechange.local
+        - atemplate.gamechange.local
 
 certificates:
     enabled: true
@@ -30,16 +30,14 @@ certificates:
     externalIssuerName: 'cluster-letsencrypt-production'
     externalIssuerKind: 'ClusterIssuer'
 
-podSecurityContext: {}
-    # fsGroup: 2000
-
-securityContext: {}
+podSecurityContext: 
+    fsGroup: 1000
     # capabilities:
     #   drop:
     #   - ALL
     # readOnlyRootFilesystem: true
-    # runAsNonRoot: true
-    # runAsUser: 1000
+    runAsNonRoot: true
+    runAsUser: 1000
 
 resources: {}
     # limits:

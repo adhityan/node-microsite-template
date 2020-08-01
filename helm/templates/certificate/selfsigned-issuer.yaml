@@ -2,10 +2,10 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
-  name: {{ include "ATEMPLATE.name" . }}-issuer
+  name: {{ include "atemplate.name" . }}-issuer
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "ATEMPLATE.labels" . | nindent 4 }}
+    {{- include "atemplate.labels" . | nindent 4 }}
 spec:
   selfSigned: {}
 {{- end }}

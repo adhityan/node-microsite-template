@@ -1,5 +1,6 @@
-#docker build -t adhityan/atemplate .
-#docker run -v "$(pwd)/db":/db:z -p 9000:9000 adhityan/atemplate
+#docker build -t adhityan/atemplate:1.0.6 .
+#docker run -v "$(pwd)/db":/db:z -p 9000:9000 adhityan/atemplate:1.0.2
+#docker push adhityan/atemplate:1.0.6
 
 #STEP 1
 FROM node:14-alpine as builder
@@ -31,7 +32,8 @@ ENV NODE_ENV 'production'
 
 WORKDIR /app
 COPY --from=builder /code/dist /app
-# COPY --from=builder /code/package.json /app
+COPY --from=builder /code/node_modules/jaeger-client/dist/src/jaeger-idl/thrift /thriftrw-idl
+COPY --from=builder /code/node_modules/jaeger-client/dist/src/jaeger-idl/thrift /app/jaeger-idl/thrift
 
 USER node    
 CMD [ "node", "index.js" ]

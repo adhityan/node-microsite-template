@@ -6,53 +6,53 @@
 {{- end -}}
 
 {{/* Expand the name of the chart. */}}
-{{- define "ATEMPLATE.name" -}}
+{{- define "atemplate.name" -}}
 {{- default .Chart.Name .Values.nameOverride | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/* Set the default version to helm version if no override is provided. */}}
-{{- define "ATEMPLATE.version" -}}
+{{- define "atemplate.version" -}}
 {{- default .Chart.AppVersion .Values.image.versionOverride -}}
 {{- end -}}
 
 {{/* Create chart name and version as used by the chart label. */}}
-{{- define "ATEMPLATE.chart" -}}
+{{- define "atemplate.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "ATEMPLATE.certificateIssuer" -}}
-{{ if eq (lower .Values.certificates.issuer) "external" }}{{ .Values.certificates.externalIssuerName }}{{ else }}{{ include "ATEMPLATE.name" . }}-issuer{{ end }}
+{{- define "atemplate.certificateIssuer" -}}
+{{ if eq (lower .Values.certificates.issuer) "external" }}{{ .Values.certificates.externalIssuerName }}{{ else }}{{ include "atemplate.name" . }}-issuer{{ end }}
 {{- end -}}
 
 {{/* Common labels */}}
-{{- define "ATEMPLATE.labels" -}}
-helm.sh/chart: {{ include "ATEMPLATE.chart" . }}
+{{- define "atemplate.labels" -}}
+helm.sh/chart: {{ include "atemplate.chart" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-app.kubernetes.io/version: {{ include "ATEMPLATE.version" . }}
+app.kubernetes.io/version: {{ include "atemplate.version" . }}
 app.kubernetes.io/copyright: "GamechangeSolutions"
 app.kubernetes.io/author: "Adhityan"
 
-app.kubernetes.io/name: {{ include "ATEMPLATE.name" . }}
+app.kubernetes.io/name: {{ include "atemplate.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
 {{/* Selector labels for core */}}
-{{- define "ATEMPLATE.coreSelectorLabels" -}}
+{{- define "atemplate.coreSelectorLabels" -}}
 app.kubernetes.io/component: "corana-core"
 {{- end -}}
 
 {{/* Docker config json */}}
-{{- define "ATEMPLATE.docker-config" -}}
+{{- define "atemplate.docker-config" -}}
 {{ if .Files.Glob "auth.docker.json" }}{{ .Files.Get "auth.docker.json" | b64enc }}
 {{- else }}{{- printf "{ \"auths\": { \"https://index.docker.io/v1/\": { \"auth\": \"%s\" } } }" (printf "%s:%s" .Values.image.hubCredentials.username .Values.image.hubCredentials.password | b64enc) | b64enc }}{{- end }}
 {{- end -}}
 
 {{/* Pull secrets */}}
-{{- define "ATEMPLATE.pull-secrets" -}}
+{{- define "atemplate.pull-secrets" -}}
 {{ if .Values.image.pullSecrets }}
 {{- .Values.image.pullSecrets }}
 {{- end -}}
 {{ if .Values.image.fromGcHub }}
-- name: {{ include "ATEMPLATE.name" . }}-docker-config
+- name: {{ include "atemplate.name" . }}-docker-config
 {{- end -}}
 {{- end -}}

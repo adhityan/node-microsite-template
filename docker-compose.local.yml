@@ -12,11 +12,11 @@ services:
         env_file:
             - 'src/.env'
         depends_on:
-            - neo4j
+            - mariadb
         build:
             context: .
             dockerfile: dev.Dockerfile
-        container_name: ATEMPLATE-dev
+        container_name: atemplate-dev
         networks:
             - backend
         labels:
@@ -33,7 +33,7 @@ services:
         container_name: mariadb
         volumes:
             - type: bind
-              source: /Users/adhityan/Projects/Javascript/ATEMPLATE/db
+              source: /Users/adhityan/Projects/Javascript/atemplate/db
               target: /data
         environment:
             - NEO4J_AUTH=neo4j/local

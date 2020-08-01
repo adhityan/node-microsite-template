@@ -1,3 +1,3 @@
-# ATEMPLATE
+# atemplate
 
-ATEMPLATE is a template for node-typescript based applications with support for kubernetes
+atemplate is a template for node-typescript based applications with support for kubernetes

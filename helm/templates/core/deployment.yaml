@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "ATEMPLATE.name" . }}
+  name: {{ include "atemplate.name" . }}
   namespace: {{.Release.Namespace}}
   labels:
-    {{- include "ATEMPLATE.labels" . | nindent 4 }}
+    {{- include "atemplate.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "ATEMPLATE.coreSelectorLabels" . | nindent 6 }}
+      {{- include "atemplate.coreSelectorLabels" . | nindent 6 }}
   strategy:
     type: Recreate
   template:
@@ -17,15 +17,15 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/config/configmap.yaml") . | sha256sum }}
       labels:
-        {{- include "ATEMPLATE.coreSelectorLabels" . | nindent 8 }}
+        {{- include "atemplate.coreSelectorLabels" . | nindent 8 }}
     spec:
       imagePullSecrets:
-        {{- include "ATEMPLATE.pull-secrets" . | nindent 8 }}
+        {{- include "atemplate.pull-secrets" . | nindent 8 }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ include "ATEMPLATE.version" . }}"
+          image: "{{ .Values.image.repository }}:{{ include "atemplate.version" . }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -33,27 +33,27 @@ spec:
               containerPort: 9000
           livenessProbe:
             initialDelaySeconds: 15
-            periodSeconds: 10
+            periodSeconds: 30
             httpGet:
               path: /api/health/live
               port: http
           readinessProbe:
             initialDelaySeconds: 15
-            periodSeconds: 10
+            periodSeconds: 30
             httpGet:
               path: /api/health/ready
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
-            {{- include "ATEMPLATE.default-env-config" . | nindent 12 }}
+            {{- include "atemplate.default-env-config" . | nindent 12 }}
           volumeMounts:
             - mountPath: /cache
-              name: {{ include "ATEMPLATE.name" . }}-data-cache-volume
+              name: {{ include "atemplate.name" . }}-data-cache-volume
       volumes:
-        - name: {{ include "ATEMPLATE.name" . }}-data-cache-volume
+        - name: {{ include "atemplate.name" . }}-data-cache-volume
           persistentVolumeClaim:
-            claimName: {{ include "ATEMPLATE.name" . }}-data-cache
+            claimName: {{ include "atemplate.name" . }}-data-cache
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

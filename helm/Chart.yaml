@@ -1,15 +1,15 @@
-#kubectl create namespace ATEMPLATE
-#kubectl config set-context --current --namespace=ATEMPLATE
-#helm install --debug ATEMPLATE ./helm --namespace=ATEMPLATE
+#kubectl create namespace atemplate
+#kubectl config set-context --current --namespace=atemplate
 
-#helm install ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev
-#helm install --dry-run ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev
-#helm upgrade --dry-run ATEMPLATE ./helm --namespace=ATEMPLATE --set ingress.hosts\[0\]=ATEMPLATE.gamechange.dev
-#helm uninstall ATEMPLATE
+#helm install atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.gamechange.dev
+#helm install --dry-run atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.gamechange.dev
+#helm upgrade --dry-run atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.gamechange.dev
+#helm upgrade atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.gamechange.dev
+#helm uninstall atemplate
 
 apiVersion: v1
-name: ATEMPLATE
-description: A helm chart for ATEMPLATE kubernetes deployment
+name: atemplate
+description: A helm chart for atemplate kubernetes deployment
 type: application
 
 dependencies:
@@ -22,4 +22,4 @@ maintainers:
     email: adhityan@gamechangesns.com
 
 version: 1.0.0
-appVersion: 1.0.0
+appVersion: 1.0.7-dev

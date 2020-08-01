@@ -1,4 +1,5 @@
-#docker build -t adhityan/atemplate-dev -f dev.Dockerfile .
+#docker build -t adhityan/atemplate:1.0.7-dev -f dev.Dockerfile .
+#docker push adhityan/atemplate:1.0.7-dev
 #Run via compose
 
 FROM node:14-alpine
@@ -19,8 +20,10 @@ COPY yarn.lock /app/
 #install packages
 RUN yarn install --frozen-lockfile
 
+COPY . /app/
+
 #always protect yourself
-USER node    
+USER 1000    
 
 #code should be mounted before this
 CMD [ "yarn", "start:dev" ]

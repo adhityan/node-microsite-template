@@ -15,7 +15,7 @@ import * as middlewares from './middlewares';
 
 Logger.init(Config.LOGGER_CONFIG);
 process.on('unhandledRejection', (reason, p) => {
-    Logger.error('Unhandled Rejection recorded', p, 'reason:', reason);
+    Logger.error('Unhandled rejection occuured', p, 'reason:', reason);
 });
 
 const isDebug = () => {
@@ -40,9 +40,10 @@ const initDatabase = async () => {
         migrations,
         synchronize: isDebug(),
         type: 'sqlite',
+    }).then(() => {
+        Logger.info('Database connection success');
+        return true;
     });
-
-    Logger.info('Database connection successful');
 };
 
 const app: Express.Application = Express();
@@ -72,7 +73,7 @@ const start = async () => {
                 undefinedResultCode: 404,
             },
             documentationParameters: {
-                baseUrl: 'https://ATEMPLATE.gamechange.dev',
+                baseUrl: process.env.PRIMARY_HOST_URL,
             },
             enableDocumentation: true,
             middlewares: <Function[]>ObjectUtils.getObjectValues(middlewares),

@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "ATEMPLATE.name" . }}-test-connection"
+  name: "{{ include "atemplate.name" . }}-test-connection"
   namespace: {{.Release.Namespace}}
   labels:
-    {{- include "ATEMPLATE.labels" . | nindent 4 }}
+    {{- include "atemplate.labels" . | nindent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -12,5 +12,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "ATEMPLATE.name" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "atemplate.name" . }}:{{ .Values.service.port }}']
   restartPolicy: OnFailure

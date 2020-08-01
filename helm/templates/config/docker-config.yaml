@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: {{ include "ATEMPLATE.name" . }}-docker-config
+  name: {{ include "atemplate.name" . }}-docker-config
   namespace: {{.Release.Namespace}}
   labels:
-    {{- include "ATEMPLATE.labels" . | nindent 4 }}
+    {{- include "atemplate.labels" . | nindent 4 }}
 data:
-  .dockerconfigjson: {{ include "ATEMPLATE.docker-config" . }}
+  .dockerconfigjson: {{ include "atemplate.docker-config" . }}
 type: kubernetes.io/dockerconfigjson
 {{- end }}

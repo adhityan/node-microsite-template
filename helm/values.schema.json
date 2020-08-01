@@ -11,7 +11,7 @@
                     "type": "boolean",
                     "form": true,
                     "title": "Use a custom hostname",
-                    "description": "Enable the ingress resource that allows you to access the ATEMPLATE installation."
+                    "description": "Enable the ingress resource that allows you to access the atemplate installation."
                 },
                 "hostname": {
                     "type": "string",

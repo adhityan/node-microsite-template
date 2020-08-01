@@ -2,10 +2,10 @@
 apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
-  name: {{ include "ATEMPLATE.name" . }}-issuer
+  name: {{ include "atemplate.name" . }}-issuer
   namespace: {{ .Release.Namespace }}
   labels:
-    {{- include "ATEMPLATE.labels" . | nindent 4 }}
+    {{- include "atemplate.labels" . | nindent 4 }}
 spec:
   acme:
     # The ACME server URL
@@ -14,7 +14,7 @@ spec:
     email: adhityan@gamechangesns.com
     # Secret resource used to store the account's private key.
     privateKeySecretRef:
-      name: {{ include "ATEMPLATE.name" . }}-letsencrypt-production
+      name: {{ include "atemplate.name" . }}-letsencrypt-production
     # Enable HTTP01 validations
     solvers:
       - selector: {}
