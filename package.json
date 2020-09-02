@@ -1,6 +1,8 @@
 {
   "name": "node-microsite-template",
   "version": "1.0.0",
+  "major-version": "1",
+  "minor-version": "1",
   "description": "ATemplate for node microservices",
   "main": "dist/app.js",
   "license": "ISC",
