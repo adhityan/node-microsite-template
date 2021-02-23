@@ -1,7 +1,7 @@
 #kubectl create namespace atemplate
 #kubectl config set-context --current --namespace=atemplate
 
-#helm install atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.gamechange.dev
+#helm install atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=template.gamechange.dev
 #helm install --dry-run atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.gamechange.dev
 #helm upgrade --dry-run atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.gamechange.dev
 #helm upgrade atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.gamechange.dev

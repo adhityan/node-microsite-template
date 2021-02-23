@@ -1,0 +1,46 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CD
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+    pull_request:
+        branches: [master]
+
+env:
+    VERSION: ${GITHUB_RUN_NUMBER}
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  ssh-key: ${{secrets.GH_TOKEN}}
+                  submodules: recursive
+            - name: docker login
+              env:
+                  DOCKER_USER: ${{ secrets.DOCKER_USER }}
+                  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+              run: |
+                  docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+            - name: Read package.json
+              id: package
+              run: |
+                  json=`cat ./package.json`
+                  json="${json//'%'/'%25'}"
+                  json="${json//$'\n'/'%0A'}"
+                  json="${json//$'\r'/'%0D'}"
+                  echo "::set-output name=content::$json"
+            - uses: jungwinter/split@v1
+              id: split
+              with:
+                  msg: ${{fromJson(steps.package.outputs.content).version}}
+                  seperator: '.'
+            - name: print version
+              run: echo ${{steps.split.outputs._0}}.${{steps.split.outputs._1}}
+            - name: docker build
+              run: docker build -t adhityan/dms:${{steps.split.outputs._0}}.${{steps.split.outputs._1}}.${{ env.VERSION }} .
+            #- name: docker push
+            #  run: docker push adhityan/dms:${{steps.split.outputs._0}}.${{steps.split.outputs._1}}.${{ env.VERSION }}
