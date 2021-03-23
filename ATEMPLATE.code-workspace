@@ -19,10 +19,10 @@
 			"**/.cache": true,
 			"yarn.lock": true
 		},
+		"editor.formatOnSave": true,
 		"files.autoSave": "onFocusChange",
 		"typescript.tsdk": "node_modules/typescript/lib",
-		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
-		"deno.enable": false,
+		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true
 	},
 	"extensions": {
 		"recommendations": [

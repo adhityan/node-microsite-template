@@ -1,8 +1,8 @@
 import { Middleware, ExpressMiddlewareInterface } from 'routing-controllers';
 import { Logger } from '@adhityan/gc-logger';
-import { UNKNOWN_ENDPOINT, httpStatusCodes } from '../constants';
 
-import { GenericResponse } from '../models';
+import { UNKNOWN_ENDPOINT, httpStatusCodes } from '../constants';
+import { HealthResponse } from '../models';
 
 @Middleware({ type: 'after' })
 export class ResponseLoggerMiddleware implements ExpressMiddlewareInterface {
@@ -10,7 +10,7 @@ export class ResponseLoggerMiddleware implements ExpressMiddlewareInterface {
     public use(request: Express.Request, response: Express.Response): void {
         if (!response.headersSent) {
             response.status(httpStatusCodes.NOT_FOUND);
-            response.send(new GenericResponse(UNKNOWN_ENDPOINT.message, UNKNOWN_ENDPOINT.statusCode));
+            response.send(new HealthResponse(UNKNOWN_ENDPOINT.message, UNKNOWN_ENDPOINT.statusCode));
             response.end();
         }
 

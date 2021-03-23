@@ -1,11 +1,11 @@
 #kubectl create namespace atemplate
 #kubectl config set-context --current --namespace=atemplate
 
-#helm install atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=template.gamechange.dev
-#helm install --dry-run atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.gamechange.dev
-#helm upgrade --dry-run atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.gamechange.dev
-#helm upgrade atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.gamechange.dev
-#helm uninstall atemplate
+#helm install atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=template.xxx.dev
+#helm install --dry-run atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.xxx.dev
+#helm upgrade --dry-run atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.xxx.dev
+#helm upgrade atemplate ./helm --namespace=atemplate --set ingress.hosts\[0\]=atemplate.xxx.dev
+#helm uninstall atemplate --namespace=atemplate 
 
 apiVersion: v1
 name: atemplate
@@ -19,7 +19,6 @@ sources:
 
 maintainers:
   - name: K V Adhityan
-    email: adhityan@gamechangesns.com
+    email: adhityan@hotmail.com
 
-version: 1.0.1
-appVersion: 1.0.7
+version: 1.0.0

@@ -1,2 +1,2 @@
-export * from './requestLogger.middleware';
-export * from './responseLogger.middleware';
+export * from './request-logger.middleware';
+export * from './response-logger.middleware';

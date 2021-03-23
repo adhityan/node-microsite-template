@@ -3,8 +3,9 @@ replicaCount: 1
 nameOverride: ''
 
 image:
-    repository: adhityan/atemplate
+    repository: "adhityan/atemplate:1.0.0"
     pullPolicy: IfNotPresent
+
     #using gc hub pull authentication overides all other provided pull secrets
     fromGcHub: true
     #These are only used if auth.docker.json is not found. For e.g. - in CI environment
@@ -12,7 +13,6 @@ image:
         username: ''
         password: ''
     pullSecrets: []
-    versionOverride: ''
 
 service:
     type: ClusterIP
@@ -21,14 +21,13 @@ service:
 ingress:
     enabled: true
     tls: true
-    hosts:
-        - atemplate.gamechange.local
+    host: atemplate.gc-core.dev
+
+config:
+    environment: development
 
 certificates:
     enabled: true
-    issuer: 'external' #options - self, staging, production, external
-    externalIssuerName: 'cluster-letsencrypt-production'
-    externalIssuerKind: 'ClusterIssuer'
 
 podSecurityContext: 
     fsGroup: 1000

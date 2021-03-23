@@ -1,7 +1,7 @@
 import { ResponseBase } from '@adhityan/gc-doc';
 import { IsString, IsNumber } from 'class-validator';
 
-export class GenericResponse extends ResponseBase {
+export class HealthResponse extends ResponseBase {
     @IsString()
     message: string;
 

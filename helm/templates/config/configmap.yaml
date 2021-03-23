@@ -6,13 +6,5 @@ metadata:
   labels:
     {{- include "atemplate.labels" . | nindent 4 }}
 data:
-  NODE_ENV: staging
-
-  INIT_TRACER: 'true'
-  JAEGER_SAMPLER_PARAM: '1'
-  JAEGER_AGENT_PORT: '6832'
-  JAEGER_SAMPLER_TYPE: 'const'
-  JAEGER_AGENT_HOST: jaeger-agent.jaeger.svc.cluster.local
-  JAEGER_SAMPLER_MANAGER_HOST_PORT: http://jaeger-agent.jaeger.svc.cluster.local:5778/sampling
-  PRIMARY_HOST_URL: https://atemplate.gamechange.dev
-  JAEGER_SERVICE_NAME: NBoard
+  HOST: http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.host }}
+  NODE_ENV: {{ .Values.config.environment }}

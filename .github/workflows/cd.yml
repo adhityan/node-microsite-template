@@ -5,7 +5,7 @@ name: CD
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
-    pull_request:
+    push:
         branches: [master]
 
 env:
@@ -27,12 +27,9 @@ jobs:
                   docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
             - name: Read package.json
               id: package
-              run: |
-                  json=`cat ./package.json`
-                  json="${json//'%'/'%25'}"
-                  json="${json//$'\n'/'%0A'}"
-                  json="${json//$'\r'/'%0D'}"
-                  echo "::set-output name=content::$json"
+              uses: juliangruber/read-file-action@v1
+              with:
+                  path: ./package.json
             - uses: jungwinter/split@v1
               id: split
               with:
@@ -41,6 +38,6 @@ jobs:
             - name: print version
               run: echo ${{steps.split.outputs._0}}.${{steps.split.outputs._1}}
             - name: docker build
-              run: docker build -t adhityan/dms:${{steps.split.outputs._0}}.${{steps.split.outputs._1}}.${{ env.VERSION }} .
-            #- name: docker push
-            #  run: docker push adhityan/dms:${{steps.split.outputs._0}}.${{steps.split.outputs._1}}.${{ env.VERSION }}
+              run: docker build -t adhityan/shopkey-onboarding-api:${{steps.split.outputs._0}}.${{steps.split.outputs._1}}.${{ env.VERSION }} .
+            - name: docker push
+              run: docker push adhityan/shopkey-onboarding-api:${{steps.split.outputs._0}}.${{steps.split.outputs._1}}.${{ env.VERSION }}

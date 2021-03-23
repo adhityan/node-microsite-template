@@ -10,11 +10,6 @@
 {{- default .Chart.Name .Values.nameOverride | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{/* Set the default version to helm version if no override is provided. */}}
-{{- define "atemplate.version" -}}
-{{- default .Chart.AppVersion .Values.image.versionOverride -}}
-{{- end -}}
-
 {{/* Create chart name and version as used by the chart label. */}}
 {{- define "atemplate.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
@@ -28,8 +23,7 @@
 {{- define "atemplate.labels" -}}
 helm.sh/chart: {{ include "atemplate.chart" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
-app.kubernetes.io/version: {{ include "atemplate.version" . }}
-app.kubernetes.io/copyright: "GamechangeSolutions"
+app.kubernetes.io/version: "{{ .Release.Revision }}"
 app.kubernetes.io/author: "Adhityan"
 
 app.kubernetes.io/name: {{ include "atemplate.name" . }}
@@ -38,7 +32,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 
 {{/* Selector labels for core */}}
 {{- define "atemplate.coreSelectorLabels" -}}
-app.kubernetes.io/component: "corana-core"
+app.kubernetes.io/component: "atemplate-core"
 {{- end -}}
 
 {{/* Docker config json */}}

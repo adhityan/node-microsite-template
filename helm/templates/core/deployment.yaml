@@ -16,6 +16,7 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/config/configmap.yaml") . | sha256sum }}
+        checksum/secret: {{ include (print $.Template.BasePath "/config/secret.yaml") . | sha256sum }}
       labels:
         {{- include "atemplate.coreSelectorLabels" . | nindent 8 }}
     spec:
@@ -25,20 +26,20 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ include "atemplate.version" . }}"
+          image: "{{ .Values.image.repository }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
               protocol: TCP
               containerPort: 9000
           livenessProbe:
-            initialDelaySeconds: 15
+            initialDelaySeconds: 30
             periodSeconds: 30
             httpGet:
               path: /api/health/live
               port: http
           readinessProbe:
-            initialDelaySeconds: 15
+            initialDelaySeconds: 30
             periodSeconds: 30
             httpGet:
               path: /api/health/ready
@@ -47,13 +48,6 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
             {{- include "atemplate.default-env-config" . | nindent 12 }}
-          volumeMounts:
-            - mountPath: /db
-              name: {{ include "atemplate.name" . }}-data-volume
-      volumes:
-        - name: {{ include "atemplate.name" . }}-data-volume
-          persistentVolumeClaim:
-            claimName: {{ include "atemplate.name" . }}-db-claim
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

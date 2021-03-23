@@ -1,23 +1,17 @@
 {{- if .Values.certificates.enabled -}}
-{{- range $host := .Values.ingress.hosts }}
----
 apiVersion: cert-manager.io/v1alpha2
 kind: Certificate
 metadata:
-  name:  {{ include "atemplate.name" $ }}-{{ $host | replace "." "-" }}-cert
+  name:  {{ include "atemplate.name" $ }}-{{ .Values.ingress.host | replace "." "-" }}-cert
   namespace: {{ $.Release.Namespace }}
   labels:
     {{- include "atemplate.labels" $ | nindent 4 }}
 spec:
-  secretName: {{ include "atemplate.name" $ }}-{{ $host | replace "." "-" }}-secret
+  secretName: {{ include "atemplate.name" $ }}-{{ .Values.ingress.host | replace "." "-" }}-secret
   issuerRef:
-    name: {{ include "atemplate.certificateIssuer" $ }}
-    {{- if eq (lower $.Values.certificates.issuer) "external" }}
-    kind: {{ $.Values.certificates.externalIssuerKind }}
-    {{- end }}
-  commonName: {{ $host }}
+    name: cluster-letsencrypt-production
+    kind: ClusterIssuer
+  commonName: {{ .Values.ingress.host }}
   dnsNames:
-    - {{ $host }}
-    #- www.{{ $host }}
-{{- end }}
+    - {{ .Values.ingress.host }}
 {{- end }}

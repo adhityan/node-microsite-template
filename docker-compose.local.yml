@@ -5,25 +5,21 @@ version: '3.7'
 
 services:
     server:
-        volumes:
-            - type: bind
-              source: .
-              target: /app
+        # volumes:
+        # - type: bind
+        #   source: .
+        #   target: /app
+        # - /app/node_modules
         env_file:
-            - 'src/.env'
+            - '.env'
         depends_on:
             - mariadb
         build:
             context: .
-            dockerfile: dev.Dockerfile
-        container_name: atemplate-dev
+            dockerfile: Dockerfile
+        container_name: core-service-dev
         networks:
             - backend
-        labels:
-            - 'traefik.enable=true'
-            - 'traefik.http.routers.api.priority=3'
-            - 'traefik.http.routers.api.rule=Host(`localhost`) && PathPrefix(`/api`)'
-            - 'traefik.http.routers.api.entrypoints=web'
         restart: always
         ports:
             - 9000:9000
@@ -33,33 +29,14 @@ services:
         container_name: mariadb
         volumes:
             - type: bind
-              source: /Users/adhityan/Projects/Javascript/atemplate/db
-              target: /data
-        environment:
-            - NEO4J_AUTH=neo4j/local
+              source: ./db
+              target: /var/lib/mysql
+        env_file:
+            - '.env'
+        ports:
+            - 3306:3306
         networks:
             - backend
-        ports:
-            - 7474:7474
-            - 7687:7687
-
-    traefik:
-        image: traefik:latest
-        container_name: traefik
-        command:
-            - '--accesslog=true'
-            - '--api.insecure=true'
-            - '--providers.docker=true'
-            - '--entrypoints.web.address=:80'
-            - '--providers.docker.exposedbydefault=false'
-        restart: always
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-        networks:
-            - backend
-        ports:
-            - 80:80
-            - 9090:8080
 
 networks:
     backend:

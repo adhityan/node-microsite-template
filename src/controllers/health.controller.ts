@@ -1,6 +1,7 @@
 import { ResponseSchema } from 'routing-controllers-openapi';
 import { JsonController, Get } from 'routing-controllers';
-import { GenericResponse } from '../models';
+
+import { HealthResponse } from '../models';
 
 @JsonController('/health')
 export class LivenessController {
@@ -8,19 +9,19 @@ export class LivenessController {
      * Health liveniess API endpoint
      */
     @Get('/live')
-    @ResponseSchema(GenericResponse)
+    @ResponseSchema(HealthResponse)
     // eslint-disable-next-line class-methods-use-this
-    public async live(): Promise<GenericResponse> {
-        return new GenericResponse('Health status OK', 200);
+    public async live(): Promise<HealthResponse> {
+        return new HealthResponse('Health status OK', 200);
     }
 
     /*
      * Health readiness API endpoint
      */
     @Get('/ready')
-    @ResponseSchema(GenericResponse)
+    @ResponseSchema(HealthResponse)
     // eslint-disable-next-line class-methods-use-this
-    public async ready(): Promise<GenericResponse> {
-        return new GenericResponse('Health status OK', 200);
+    public async ready(): Promise<HealthResponse> {
+        return new HealthResponse('Health status OK', 200);
     }
 }
