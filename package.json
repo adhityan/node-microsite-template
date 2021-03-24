@@ -19,7 +19,6 @@
     "test:coverage": "jest --coverage",
     "test:ci": "jest --coverage && cat ./coverage/lcov.info"
   },
-  "keywords": [],
   "author": "K V Adhityan",
   "repository": {
     "type": "git",
