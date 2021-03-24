@@ -27,7 +27,6 @@
   "dependencies": {
     "@adhityan/gc-doc": "^2.3.0",
     "@adhityan/gc-logger": "^1.9.0",
-    "@adhityan/gc-nats": "^2.3.3",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "class-validator": "^0.13.1",
