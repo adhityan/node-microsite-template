@@ -17,7 +17,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        container_name: core-service-dev
+        container_name: atemplate-dev
         networks:
             - backend
         restart: always

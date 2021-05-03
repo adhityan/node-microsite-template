@@ -1,40 +1,57 @@
 {
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
-    "required": [
-        "image",
-        "ingress"
-    ],
     "properties": {
         "ingress": {
-            "form": true,
             "type": "object",
+            "form": true,
             "title": "Ingress Details",
-            "description": "The DNS and HTTPS certificates will be auto created",
-            "required": [
-                "host"
-            ],
             "properties": {
-                "host": {
+                "enabled": {
+                    "type": "boolean",
                     "form": true,
+                    "title": "Use a custom hostname",
+                    "description": "Enable the ingress resource that allows you to access the atemplate installation."
+                },
+                "hostname": {
                     "type": "string",
-                    "title": "Hostname"
+                    "form": true,
+                    "title": "Hostname",
+                    "hidden": {
+                        "condition": false,
+                        "value": "ingress.enabled"
+                    }
                 }
             }
         },
-        "image": {
-            "form": true,
+        "resources": {
             "type": "object",
-            "title": "Docker image",
-            "description": "The docker image name and tag pushed from github",
-            "required": [
-                "repository"
-            ],
+            "title": "Required Resources",
+            "description": "Configure resource requests",
+            "form": true,
             "properties": {
-                "repository": {
-                    "form": true,
-                    "type": "string",
-                    "title": "Image & Version"
+                "requests": {
+                    "type": "object",
+                    "properties": {
+                        "memory": {
+                            "type": "string",
+                            "form": true,
+                            "render": "slider",
+                            "title": "Memory Request",
+                            "sliderMin": 10,
+                            "sliderMax": 2048,
+                            "sliderUnit": "Mi"
+                        },
+                        "cpu": {
+                            "type": "string",
+                            "form": true,
+                            "render": "slider",
+                            "title": "CPU Request",
+                            "sliderMin": 10,
+                            "sliderMax": 2000,
+                            "sliderUnit": "m"
+                        }
+                    }
                 }
             }
         }

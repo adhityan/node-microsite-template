@@ -1,0 +1,30 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ include "atemplate.name" . }}-ingress-secure
+  namespace: {{.Release.Namespace}}
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: {{ .Values.config.authenticationMiddlewareName }}
+    traefik.ingress.kubernetes.io/router.entrypoints: {{ .Values.config.traefikEntrypoint }}
+    {{ if .Values.ingress.tls }}
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    {{ end }}
+  labels:
+    {{ include "atemplate.labels" . | nindent 4 }}
+spec:
+  {{ if .Values.ingress.tls }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host | quote }}
+      secretName: {{ include "atemplate.name" $ }}-{{ .Values.ingress.host | replace "." "-" }}-secret
+  {{ end }}
+  rules:
+    - host: {{ .Values.ingress.host | quote }}
+      http:
+        paths:
+          - path: /api
+            backend:
+              serviceName: {{ include "atemplate.name" $ }}-service
+              servicePort: 80
+{{- end -}}

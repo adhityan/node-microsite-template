@@ -2,13 +2,11 @@ atemplate is up and running!
 
 {{- if .Values.ingress.enabled  }}
 
-Access atemplate using the URL{{ if gt (len .Values.ingress.hosts) 1 }}s{{ end }}:
-{{- range $host := .Values.ingress.hosts }} 
-- http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host }}/
-{{- end }}
+Access atemplate-service using the URL:
+- http{{ if $.Values.ingress.tls }}s{{ end }}://{{ .Values.ingress.host }}/
 
 {{- else  }}
 
-Please refer to your system administrator on the API endpoint to access the atemplate application.
+Please refer to your system administrator on the API endpoint to access the atemplate.
   
 {{- end }}

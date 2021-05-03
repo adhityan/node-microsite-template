@@ -49,7 +49,7 @@ The following table lists the configurable parameters of the atemplate chart and
 | `image.repository` | atemplate image name                                      | `atemplate` |
 | `image.pullPolicy` | Image pull policy                                              | `IfNotPresent`   |
 | `nameOverride`     | String to override the default fullname template with a string | `atemplate` |
-| `replicaCount`     | The number of replicas of the core-service to launch           | 1                |
+| `replicaCount`     | The number of replicas of the atemplate to launch           | 1                |
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 

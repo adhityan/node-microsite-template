@@ -21,7 +21,7 @@ service:
 ingress:
     enabled: true
     tls: true
-    host: atemplate.gc-core.dev
+    host: atemplate.xxx.dev
 
 config:
     environment: development

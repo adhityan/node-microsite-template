@@ -15,4 +15,12 @@
     secretKeyRef:
       name: {{ include "atemplate.name" . }}-secret
       key: EXAMPLE
+
+- name: CONTAINER_NAME
+  valueFrom:
+    fieldRef:
+      fieldPath: metadata.name
+      
+- name: DEBUG
+  value: "GCNats:*"
 {{- end -}}
