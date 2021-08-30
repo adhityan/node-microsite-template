@@ -5,10 +5,9 @@ import { Config } from '../config';
 import { ObjectUtils } from './object.util';
 import { Entities, Migrations } from '../orm';
 
-export const isDebug = (): boolean => {
+export const isDebug = (): boolean =>
     // if (process.env.NODE_ENV?.includes('PROD') || process.env.NODE_ENV?.includes('prod')) return false;
-    return true;
-};
+    true;
 
 /**
  * Initialize the SQLite connection

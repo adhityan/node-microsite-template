@@ -1,9 +1,7 @@
 import { Action } from 'routing-controllers';
 
-export const authorizationChecker = (action: Action, roles: string[]): boolean => {
-    return true;
-};
+// eslint-disable-next-line
+export const authorizationChecker = (_action: Action, _roles: string[]): boolean => true;
 
-export const currentUserChecker = (action: Action): {} | null => {
-    return {};
-};
+// eslint-disable-next-line
+export const currentUserChecker = (_action: Action): Record<string, unknown> | null => null;

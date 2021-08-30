@@ -20,6 +20,8 @@
   valueFrom:
     fieldRef:
       fieldPath: metadata.name
+- name: K8_NAMESPACE
+  value: {{.Release.Namespace}}
       
 - name: DEBUG
   value: "GCNats:*"

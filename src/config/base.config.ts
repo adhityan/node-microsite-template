@@ -1,4 +1,5 @@
-import { LoggerOptions } from '@adhityan/gc-logger/lib/types';
+import { LoggerOptions } from '@adhityan/gc-logger';
+import { APP_NAME } from '../constants';
 
 export abstract class BaseConfig {
     /**
@@ -10,9 +11,8 @@ export abstract class BaseConfig {
      * Configuration setting for the GC Logger
      */
     public LOGGER_CONFIG: LoggerOptions = {
-        exitOnError: false,
-        level: 'debug',
-        type: 'console',
+        fileLoggerEnabled: false,
+        serviceName: APP_NAME,
     };
 
     /**
