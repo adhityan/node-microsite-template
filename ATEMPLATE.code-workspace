@@ -6,7 +6,7 @@
 	],
 	"settings": {
 		"files.exclude": {
-            "**/.cache": true,
+			"**/.cache": true,
 			"**/dist": true,
 			"yarn.lock": true,
 			"package-lock.json": true,
@@ -14,9 +14,10 @@
 		},
 		"search.exclude": {
 			"dist": true,
-            "**/db": true,
+			"**/db": true,
 			"**/coverage": true,
 			"**/.cache": true,
+			"package-lock.json": true,
 			"yarn.lock": true
 		},
 		"editor.formatOnSave": true,
@@ -25,10 +26,8 @@
 		"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true
 	},
 	"extensions": {
-		"recommendations": [
-		],
-		"unwantedRecommendations": [
-		]
+		"recommendations": [],
+		"unwantedRecommendations": []
 	},
 	"launch": {
 		"configurations": [],
