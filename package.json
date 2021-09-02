@@ -27,8 +27,8 @@
     "url": "git+https://github.com/adhityan/node-microsite-template"
   },
   "dependencies": {
-    "@adhityan/gc-doc": "^3.0.0",
-    "@adhityan/gc-logger": "^3.0.2",
+    "@adhityan/gc-doc": "^3.0.2",
+    "@adhityan/gc-logger": "^3.1.7",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "class-validator": "^0.12.2",
