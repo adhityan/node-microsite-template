@@ -5,4 +5,3 @@ export const authorizationChecker = (_action: Action, _roles: string[]): boolean
 
 // eslint-disable-next-line
 export const currentUserChecker = (_action: Action): Record<string, unknown> | null => null;
-

@@ -2,7 +2,7 @@
 #docker push adhityan/atemplate:1.0.0-dev
 #Run via compose
 
-FROM node:14-alpine
+FROM node:16-alpine
 LABEL maintainer="adhityan"
 WORKDIR /app
 

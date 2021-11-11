@@ -5,18 +5,18 @@ version: '3.7'
 
 services:
     server:
-        # volumes:
-        # - type: bind
-        #   source: .
-        #   target: /app
-        # - /app/node_modules
+        volumes:
+            - type: bind
+              source: ./src
+              target: /app/src
+            - /app/node_modules
         env_file:
             - '.env'
         depends_on:
             - mariadb
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: dev.Dockerfile
         container_name: atemplate-dev
         networks:
             - backend

@@ -48,10 +48,15 @@ export abstract class BaseConfig {
     /**
      * MySQL DB Database
      */
-    public DB_DATABASE: string = process.env.DB_DATABASE || 'insta';
+    public DB_DATABASE: string = process.env.DB_DATABASE || 'atemplate';
 
     /**
      * Database table prefix
      */
     public DB_TABLE_PREFIX: string = process.env.DB_TABLE_PREFIX || '';
+
+    /**
+     * type orm synchronize flag
+     */
+    public DB_SYNCHRONIZE: boolean;
 }

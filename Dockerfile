@@ -3,7 +3,7 @@
 #docker run -p 9000:9000 adhityan/atemplate:1.0.0
 
 #STEP 1
-FROM node:14-alpine as builder
+FROM node:16-alpine as builder
 WORKDIR /code
 
 #copy npm login credentials
@@ -14,7 +14,7 @@ WORKDIR /code
 
 #We use npm
 COPY package.json /code/
-COPY package-lock.json /app/
+COPY package-lock.json /code/
 
 #install packages
 RUN npm ci
@@ -24,7 +24,7 @@ COPY . /code/
 RUN npm run build
 
 #STEP FINAL
-FROM node:14-alpine
+FROM node:16-alpine
 LABEL maintainer="adhityan"
 
 ENV NODE_ENV 'production'
