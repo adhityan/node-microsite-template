@@ -1,9 +1,11 @@
+import { Service } from 'typedi';
 import { Middleware, ExpressMiddlewareInterface } from 'routing-controllers';
 import { Logger } from '@adhityan/gc-logger';
 
 import { UNKNOWN_ENDPOINT, httpStatusCodes } from '../constants';
 import { HealthResponse } from '../models';
 
+@Service()
 @Middleware({ type: 'after' })
 export class ResponseLoggerMiddleware implements ExpressMiddlewareInterface {
     // eslint-disable-next-line class-methods-use-this
