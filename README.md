@@ -17,4 +17,4 @@ It provides the following features out of the box -
 6. Comes with ESLint (airbnb + custom) and Prettier wired in
 7. Wired in with Husky, LintStaged and commitLint for auto linting on commits
 
-Don't fortet to replace ATemplate with your project name.
+**Note:** Don't forget to replace `ATemplate` with your project name.
